@@ -20,33 +20,6 @@ class ProductCategory(models.Model):
         return self.name
 
 
-class ProductData(models.Model):
-    code = models.CharField(max_length=8, unique=True)
-    name = models.CharField(max_length=255)
-    unit_cost = models.DecimalField(max_digits=10, decimal_places=2)
-    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
-    quantity = models.IntegerField()
-    description = models.TextField()
-    category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.name
-
-
-class ProductDelete(models.Model):
-    product = models.ForeignKey(ProductData, on_delete=models.CASCADE)
-    del_unit = models.IntegerField()
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.product.name
-
-
 class AreaData(models.Model):
     code = models.CharField(max_length=4, unique=True)
     name = models.CharField(max_length=255)
@@ -78,6 +51,34 @@ class ShoData(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ProductData(models.Model):
+    code = models.CharField(max_length=8, unique=True)
+    name = models.CharField(max_length=255)
+    unit_cost = models.DecimalField(max_digits=10, decimal_places=2)
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
+    quantity = models.IntegerField()
+    description = models.TextField()
+    category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
+    shop = models.ForeignKey(ShoData, on_delete=models.CASCADE)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+
+class ProductDelete(models.Model):
+    product = models.ForeignKey(ProductData, on_delete=models.CASCADE)
+    del_unit = models.IntegerField()
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.product.name
 
 
 class CustomerData(models.Model):

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+<!-- Content -->
+{% block content %}
+
+{% endblock content %}
+<!-- Script -->
+{% block script %}
+<script>
+    const { createApp } = Vue;
+    createApp(
+        {
+            delimiters: ["[{", "}]"],
+            data() {
+                return {
+                    layout: {
+                        name: "products",
+                        page: "type"
+                    }
+                };
+            }
+        }
+    ).mount('#app')
+</script>
+{% endblock script %}

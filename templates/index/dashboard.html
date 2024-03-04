@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+<!-- Content -->
+{% block content %}
+<div class=" row mx-auto">
+[{message}]
+</div>
+{% endblock content %}
+<!--  -->
+{% block script %}
+<script>
+    const { createApp } = Vue;
+    createApp(
+        {
+            delimiters: ["[{", "}]"],
+            data() {
+                return {
+                    layout:{
+                        name:"index",
+                        page:"dashboard"
+                    }
+                };
+            }
+        }
+    ).mount('#app')
+</script>
+{% endblock script %}
